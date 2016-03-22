@@ -22,14 +22,19 @@ class sport:
         #self.sportCompletedinTime = (int((datetime.timedelta(days=2).total_seconds()/86400)))/float(int(self.sportTarget_time.total_seconds()/86400))
         if self.sportCompleted < 1:
             if self.sportCompleted < self.sportCompletedinTime and self.sportCompletedinTime < 1:
-                print "今天还有",str((self.sportCompletedinTime-self.sportCompleted) * 10)+self.sportTarget_count_mu,"没有完成"
+            	result = str((self.sportCompletedinTime-self.sportCompleted) * 10)+self.sportTarget_count_mu
+                print "今天还有",result,"没有完成"
                 print "是时候动起来了，不要怂！"
             elif self.sportCompleted < self.sportCompletedinTime and self.sportCompletedinTime >= 1:
                 print "时间到。你没有完成计划。"
+                result = False
             elif self.sportCompleted >= self.sportCompletedinTime and self.sportCompletedinTime < 1:
                 print "今日目标已完成。",self.sportCompleted,self.sportCompletedinTime
+                result = True
         else:
             print "本计划已完成。瘦子小姐！"
+            result = True
+        return result
 
 def exitApp():
     pickle.dump(sportlist,open("sportObj.pk", "w"))
